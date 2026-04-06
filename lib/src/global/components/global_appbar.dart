@@ -42,7 +42,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
         splashRadius: 0.1,
         icon: const Icon(Icons.arrow_back_ios_new_outlined, color: ColorRes.white, size: 18),
         onPressed: () {
-          AppNavigator.pop(context);
+          AppNavigator.pop();
         },
       )
           : const SizedBox.shrink(),

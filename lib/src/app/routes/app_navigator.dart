@@ -1,90 +1,38 @@
-import 'package:flutter/material.dart';
-import '../../global/utils/navigation.dart';
+import 'package:get/get.dart';
 import 'app_route.dart';
 
-/// All navigation methods using existing navigation functions
-/// Always use AppRouteKeys for route names
 class AppNavigator {
   AppNavigator._();
 
-  // ==================== Push ====================
-
-  /// Push new screen
-  /// Example: AppNavigator.push(context, AppRouteKeys.login)
-  static void push(BuildContext context, String routeName) {
-    navigateToNamed(context, routeName);
+  // ── Push ──────────────────────────────────────
+  static void push(String routeName, {dynamic arguments}) {
+    Get.toNamed(routeName, arguments: arguments);
   }
 
-  /// Push and replace current screen
-  /// Example: AppNavigator.pushReplace(context, AppRouteKeys.home)
-  static void pushReplace(BuildContext context, String routeName) {
-    navigateAndReplaceNamed(context, routeName);
+  static void pushReplace(String routeName, {dynamic arguments}) {
+    Get.offNamed(routeName, arguments: arguments);
   }
 
-  /// Push and remove ALL previous screens
-  /// Example: AppNavigator.pushAndRemoveAll(context, AppRouteKeys.home)
-  static void pushAndRemoveAll(BuildContext context, String routeName) {
-    navigateAndRemoveAllNamed(context, routeName);
+  static void pushAndRemoveAll(String routeName, {dynamic arguments}) {
+    Get.offAllNamed(routeName, arguments: arguments);
   }
 
-  /// Push and remove until a specific route
-  /// Example: AppNavigator.pushAndRemoveUntil(context, LoginScreen(), AppRouteKeys.home)
-  static void pushAndRemoveUntil(
-      BuildContext context,
-      Widget screen,
-      String untilRouteName,
-      ) {
-    navigateAndRemoveUntil(context, screen, untilRouteName);
+  // ── Pop ───────────────────────────────────────
+
+  static void pop({dynamic result}) {
+    Get.back(result: result);
   }
 
-  // ==================== Pop ====================
+  static bool canPop() => Get.key.currentState?.canPop() ?? false;
 
-  /// Go back to previous screen
-  /// Example: AppNavigator.pop(context)
-  static void pop(BuildContext context) {
-    goBack(context);
-  }
+  // ── Arguments ─────────────────────────────────
+  static dynamic get arguments => Get.arguments;
 
-  /// Go back with result
-  /// Example: AppNavigator.popWithResult(context, 'myResult')
-  static void popWithResult<T>(BuildContext context, T result) {
-    goBackWithResult(context, result);
-  }
+  // ── Shortcuts ─────────────────────────────────
 
-  /// Pop until a specific route
-  /// Example: AppNavigator.popUntilNamed(context, AppRouteKeys.home)
-  static void popUntilNamed(BuildContext context, String routeName) {
-    popUntilRoute(context, routeName);
-  }
-
-  /// Pop to root (first screen)
-  /// Example: AppNavigator.toRoot(context)
-  static void toRoot(BuildContext context) {
-    popToRoot(context);
-  }
-
-  // ==================== Check ====================
-
-  /// Check if can go back
-  static bool canPop(BuildContext context) {
-    return canGoBack(context);
-  }
-
-  // ==================== Shortcuts ====================
-
-  /// Go to Login and clear stack
-  static void goToLogin(BuildContext context) {
-    navigateAndRemoveAllNamed(context, AppRouteKeys.login);
-  }
-
-  /// Go to Home and clear stack
-  static void goToHome(BuildContext context) {
-    navigateAndRemoveAllNamed(context, AppRouteKeys.home);
-  }
-
-  /// Go to OnBoarding and clear stack
-  static void goToOnBoarding(BuildContext context) {
-    navigateAndRemoveAllNamed(context, AppRouteKeys.onBoarding);
-  }
+  static void goToLogin()      => Get.offAllNamed(AppRouteKeys.login);
+  static void goToHome()       => Get.offAllNamed(AppRouteKeys.home);
+  static void goToOnBoarding() => Get.offAllNamed(AppRouteKeys.onBoarding);
+  static void goToDashboard()  => Get.offAllNamed(AppRouteKeys.dashboard);
 
 }
