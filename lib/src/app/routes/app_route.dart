@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../core_features/splash/splash_screen.dart';
+import '../../core_features/splash/view/splash_screen.dart';
 // import screens...
 
 class AppRouteKeys {
