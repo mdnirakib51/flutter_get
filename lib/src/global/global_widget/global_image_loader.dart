@@ -1,8 +1,9 @@
+
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../../../gen/assets.gen.dart';
 import '../constants/colors_resources.dart' show ColorRes;
-import '../constants/images.dart';
 
 enum ImageFor { asset, network, local }
 
@@ -54,7 +55,7 @@ class GlobalImageLoader extends StatelessWidget {
             color: ColorRes.grey.withAlpha(130),
             child: Center(
               child: Image.asset(
-                errorImg ?? Images.appLogoShadow,
+                errorImg ?? Assets.requiredSrc.placeholderImg.path,
                 height: errorHeight,
                 width: errorWidth,
                 fit: BoxFit.fill,
@@ -78,7 +79,7 @@ class GlobalImageLoader extends StatelessWidget {
             color: ColorRes.black,
             child: Center(
               child: Image.asset(
-                errorImg ?? Images.appLogoShadow,
+                errorImg ?? Assets.requiredSrc.placeholderImg.path,
                 height: errorHeight,
                 width: errorWidth,
                 fit: BoxFit.fill,
@@ -102,7 +103,7 @@ class GlobalImageLoader extends StatelessWidget {
             color: ColorRes.black,
             child: Center(
               child: Image.asset(
-                errorImg ?? Images.appLogoShadow,
+                errorImg ?? Assets.requiredSrc.placeholderImg.path,
                 height: errorHeight,
                 width: errorWidth,
                 fit: BoxFit.fill,
